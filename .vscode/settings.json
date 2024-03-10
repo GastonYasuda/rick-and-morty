@@ -1,0 +1,19 @@
+{
+  "editor.autoIndent": "full",
+  "prettier.useTabs": true,
+  "html.format.indentHandlebars": true,
+  "html.format.indentInnerHtml": true,
+  "editor.guides.highlightActiveIndentation": "always",
+  "editor.guides.indentation": true,
+  "editor.wrappingIndent": "same",
+  "indentRainbow.colorOnWhiteSpaceOnly": true,
+  "prettier.vueIndentScriptAndStyle": true,
+  "editor.tabSize": 2,
+  "editor.detectIndentation": true,
+  "editor.defaultFormatter": "dbaeumer.vscode-eslint",
+  "editor.foldingStrategy": "indentation",
+  "editor.stickyScroll.defaultModel": "indentationModel",
+  "editor.formatOnSave": true,
+  "editor.formatOnType": true,
+  "editor.formatOnSaveMode": "modifications"
+}

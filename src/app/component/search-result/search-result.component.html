@@ -1,0 +1,14 @@
+@if(byString){ 
+  @for(cadaUno of todosLosResultados; track $index){
+
+      <div class="cardContainer">
+        <h1>{{ cadaUno.name }}</h1>
+        <img src="{{ cadaUno.image }}" alt="{{ cadaUno.name }}" />
+      </div>
+  } 
+} @if(!byString){
+  <div class="cardContainer">
+    <h1>{{ resultadoId?.name }}</h1>
+    <img src="{{ resultadoId?.image }}" alt="{{ resultadoId?.name }}" />
+  </div>
+}

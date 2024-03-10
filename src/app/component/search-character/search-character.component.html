@@ -1,0 +1,27 @@
+<form
+  class="d-flex"
+  role="search"
+  (submit)="searchResultMethod($event)"
+  [formGroup]="searchCharacter"
+>
+  <input
+    class="form-control me-2"
+    type="search"
+    placeholder="Search"
+    aria-label="Search"
+    formControlName="searchInput"
+  />
+  <button
+    class="btn btn-outline-success"
+    type="submit"
+    routerLink="/searchResult"
+    routerLinkActive="router-link-active"
+  >
+    Search
+  </button>
+
+
+</form>  
+
+
+

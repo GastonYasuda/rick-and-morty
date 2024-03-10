@@ -1,0 +1,9 @@
+<p>character-detail works!</p>
+
+@if(loading){
+<h5>Loading...</h5>
+} @if(!loading){
+<h1>{{ character?.name }}</h1>
+<img src="{{ character?.image }}" alt="{{ character?.name }}" />
+
+}

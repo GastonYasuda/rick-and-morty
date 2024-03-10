@@ -1,0 +1,37 @@
+<div class="characterComponent">
+
+   <div class="characterComponent__header">
+      <div class="characterComponent__header-title">
+         <h3>Personajes</h3>
+      </div>
+      <div class="characterComponent__header-buttons">
+         <button type="button" class="btn btn-light" (click)="seeLessCharacters()">ANTERIOR</button> 
+         <button type="button" class="btn btn-light" (click)="seeMoreCharacters()" >SIGUIENTE</button>
+      </div>
+   </div>
+
+
+   <div class="characterComponent__body">
+      @for (allCharacter of allCharacterPages; track $index) {
+         <button type="button" (click)="navigate(allCharacter.id)" >
+            <div class="card text-bg-dark" >
+               <img src="{{allCharacter.image}}" class="card-img" alt="{{ allCharacter.name }}">
+               <div class="card-img-overlay">
+                  <p class="card-text">{{ allCharacter.status }}</p>
+               </div>
+               <div class="card-body">
+                  <h5 class="card-title">{{ allCharacter.name }}</h5>
+               </div>
+            </div>
+         </button>
+      }
+   </div>
+
+
+
+
+
+
+</div>
+
+

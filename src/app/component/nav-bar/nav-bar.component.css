@@ -1,0 +1,19 @@
+.navbar {
+
+  & .navBarLogo {
+    width: 150px;
+  }
+
+  & .container-fluid {
+    width: 95%;
+    margin: auto;
+  }
+
+}
+
+
+@media only screen and (max-width: 500px) {
+  .container-fluid {
+    justify-content: center;
+  }
+}
