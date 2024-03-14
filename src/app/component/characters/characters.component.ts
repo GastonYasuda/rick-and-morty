@@ -1,4 +1,4 @@
-import { Component, OnInit, inject } from '@angular/core';
+import { Component, Input, OnInit, inject } from '@angular/core';
 import { ApiService } from '../../services/api.service';
 import { Result } from '../../model/character.model';
 import { Router } from '@angular/router';
@@ -11,6 +11,7 @@ import { Router } from '@angular/router';
   styleUrl: './characters.component.css',
 })
 export class CharactersComponent implements OnInit {
+
   allCharacterPages?: Result[] = [];
 
   pageNumber: number = 1;

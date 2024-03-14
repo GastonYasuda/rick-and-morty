@@ -1,7 +1,6 @@
-import { Component, OnInit, inject } from '@angular/core';
+import { Component, Input, OnInit, inject } from '@angular/core';
 import { ApiService } from '../../services/api.service';
-import { ICharacter, Result } from '../../model/character.model';
-import { log } from 'console';
+import { Result } from '../../model/character.model';
 
 @Component({
   selector: 'app-species',
@@ -11,11 +10,11 @@ import { log } from 'console';
   styleUrl: './species.component.css',
 })
 export class SpeciesComponent implements OnInit {
+  @Input() characteristic?: string;
   private _apiService = inject(ApiService);
 
+
   searchSpecie?: Result[] = [];
-  whatSpecie?: Result[];
-  seeHuman: boolean = false;
   allcharacter?: any[];
   speciesType = new Set<string>();
 
@@ -24,45 +23,31 @@ export class SpeciesComponent implements OnInit {
   }
 
   ngOnInit(): void {
-    this._apiService
-      .getAllCharacterCharacteristic()
-      .subscribe((data: ICharacter) => {
-        this.whatSpecie = data.results;
-      });
+ //   console.log(this.characteristic);
+
     this.allcharacter = this._apiService.getAllCharacters();
-    //   console.log(this.allcharacter);
 
     if (this.allcharacter !== undefined) {
       for (const eachCharacter of this.allcharacter) {
         for (const character of eachCharacter.results) {
-          this.speciesType.add(character.species);
+          this.speciesType.add(character[`${this.characteristic}`]);
         }
       }
     }
-    
-    this.transform(this.speciesType)
+
+    this.transform(this.speciesType);
   }
 
   searchByCharacteristic(specie: string) {
     this.searchSpecie = [];
-    //console.log(this.allcharacter);
 
     if (this.allcharacter !== undefined) {
-      //  console.log(this.allcharacter);
-
       for (const eachCharacter of this.allcharacter) {
         for (const character of eachCharacter.results) {
-          if (character.species === specie) {
-            //console.log(character.species);
+          if (character[`${this.characteristic}`] === specie) {
             this.searchSpecie?.push(character);
           }
         }
-      }
-
-      if (specie === 'Human') {
-        this.seeHuman = true;
-      } else {
-        this.seeHuman = false;
       }
     }
   }

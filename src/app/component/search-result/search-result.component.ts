@@ -13,6 +13,8 @@ import { ApiService } from '../../services/api.service';
   styleUrl: './search-result.component.css',
 })
 export class SearchResultComponent implements OnInit {
+
+
   reciveAllSearchResults?: Result[];
   reciveCharacterResult?: Result;
 
