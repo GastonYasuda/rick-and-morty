@@ -10,44 +10,54 @@ export class ApiService {
   private _http = inject(HttpClient);
   private urlBase: string = 'https://rickandmortyapi.com/api/character';
 
-  searchAllCharacter?: ICharacter;
-  consulta: any;
-  pages: any;
-
   private whatCharacter = new BehaviorSubject<Result[]>([]);
+
+  pageNumber?: any;
+  allCharacters?: any[] = [];
+  howManyPages?: number;
+
+  //info.pages
 
   showSetedSearchResult(): Observable<any> {
     return this.whatCharacter.asObservable();
   }
 
   setSearchResult(showCharacterResult: any) {
-    // Haz algo con los resultados, por ejemplo, mostrarlos en la consola
     return this.whatCharacter.next(showCharacterResult);
   }
 
-  getAllCharacters(): Observable<ICharacter> {
-    return this._http.get<ICharacter>(this.urlBase);
+  getAllCharacters() {
+    this.getAllCharacterCharacteristic().subscribe((data) => {
+      this.howManyPages = data.info.pages;
+      if (this.howManyPages) {
+        for (let i = 0; i < this.howManyPages; i++) {
+          this.pageId(i).subscribe((data) => {
+            this.allCharacters?.push(data)
+          });
+        }
+      }
+    });
+    return this.allCharacters
   }
+
+  getAllCharacterCharacteristic(): Observable<ICharacter> {
+    return this._http.get<ICharacter>(`${this.urlBase}`);
+  }
+
   getCharacter(id: number): Observable<Result> {
     return this._http.get<Result>(`${this.urlBase}/${id}`);
   }
 
-  getCharacterBySearch(name: string): Observable<ICharacter> {
+  getSearchResult(name: string): Observable<ICharacter> {
     return this._http.get<ICharacter>(`${this.urlBase}/?name=${name}`);
   }
 
-  getSearchResult(name: string): Observable<ICharacter> {
-    this.consulta = this._http.get<ICharacter>(`${this.urlBase}/?name=${name}`);
-    return this.consulta;
-  }
-
   getSearchResultById(id: number): Observable<ICharacter> {
-    this.consulta = this._http.get<ICharacter>(`${this.urlBase}/${id}`);
-    return this.consulta;
+    return this._http.get<ICharacter>(`${this.urlBase}/${id}`);
   }
 
   pageId(id: number): Observable<ICharacter> {
-    this.pages = this._http.get<ICharacter>(`${this.urlBase}/?page=${id}`);
-    return this.pages;
+    this.pageNumber = this._http.get<ICharacter>(`${this.urlBase}/?page=${id}`);
+    return this.pageNumber;
   }
 }

@@ -1,0 +1,28 @@
+<div>
+  @for (type of speciesType; track $index) {
+
+  <button (click)="searchByCharacteristic(type)" >
+    {{type}}
+  </button>
+  }
+
+</div>
+
+
+
+<div>
+@if(seeHuman){
+  @for (eachSpecie of searchSpecie; track $index) {
+  <h1>{{eachSpecie.name}}</h1> 
+  <img src="{{eachSpecie.image}}" alt="{{eachSpecie.name}}">
+  }
+}
+@if(!seeHuman){
+  @for (eachSpecie of searchSpecie; track $index) {
+  <h1>{{eachSpecie.name}}</h1> 
+  <img src="{{eachSpecie.image}}" alt="{{eachSpecie.name}}">
+  }
+}
+
+
+</div>

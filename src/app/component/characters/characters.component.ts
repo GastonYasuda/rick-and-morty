@@ -16,7 +16,6 @@ export class CharactersComponent implements OnInit {
   pageNumber: number = 1;
   howManyPages: number = 0;
   nextPage: number = this.pageNumber;
-
   private _apiService = inject(ApiService);
   private _router = inject(Router);
 
@@ -24,7 +23,7 @@ export class CharactersComponent implements OnInit {
     this._apiService.pageId(this.pageNumber).subscribe((data) => {
       this.allCharacterPages = data.results;
       this.howManyPages = data.info.pages;
-    });
+    });     
   }
 
   seeLessCharacters() {
@@ -33,6 +32,7 @@ export class CharactersComponent implements OnInit {
       this.allCharacterPages = data.results;
     });
   }
+
   seeMoreCharacters() {
     this.pageNumber < this.howManyPages && this.pageNumber++;
     this._apiService.pageId(this.pageNumber).subscribe((data) => {

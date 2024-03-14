@@ -24,7 +24,7 @@ export class SearchResultComponent implements OnInit {
 
   ngOnInit(): void {
     this.todosLosResultados = [];
-    console.log(typeof this.resultadoId);
+
 
     this._apiService.showSetedSearchResult().subscribe((answer: Result[]) => {
       if (answer.length > 0) {
